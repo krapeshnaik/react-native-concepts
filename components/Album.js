@@ -7,14 +7,14 @@ import Button from './Button.js';
 
 export default Album = ({ album }) => {
     const { title, artist, thumbnail_image, image, url } = album,
-        {
-            albumStyle,
-            headerContentStyle,
-            thumbnailContainerStyle,
-            thumbnailStyle,
-            headerTextStyle,
-            imageStyle
-        } = styles;
+    {
+        albumStyle,
+        headerContentStyle,
+        thumbnailContainerStyle,
+        thumbnailStyle,
+        headerTextStyle,
+        imageStyle
+    } = styles;
 
     return (
         <Card style={albumStyle}

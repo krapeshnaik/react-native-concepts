@@ -29,20 +29,32 @@ export default class LoginForm extends Component {
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
+            .then(this.onLoginSuccess)
             .catch(e => {
-                this.setState({ loading: false });
-
                 // Create user
                 firebase
                     .auth()
                     .createUserWithEmailAndPassword(email, password)
-                    .catch(e => {
-                        this.setState({
-                            loading: false,
-                            error: e.message
-                        });
-                    });
+                    .then(this.onLoginSuccess)
+                    .catch(this.onLoginFailure);
             });
+    }
+
+    onLoginSuccess = () => {
+        alert('login success');
+        this.setState({
+            error: 'dasda',
+            loading: false,
+            email: '',
+            password: ''
+        });
+    }
+
+    onLoginFailure = e => {
+        this.setState({
+            error: e.message,
+            loading: false
+        });
     }
 
     render() {
@@ -60,11 +72,11 @@ export default class LoginForm extends Component {
                 
                 <CardSection>
                 <Input
-                        label="Password"
-                        placeholder="********"
-                        secureTextEntry={true}
-                        text={this.state.password}
-                        onChangeText={password => this.setState({ password })} />
+                    label="Password"
+                    placeholder="********"
+                    secureTextEntry={true}
+                    text={this.state.password}
+                    onChangeText={password => this.setState({ password })} />
                 </CardSection>
                 
                 <Text style={errorMessageStyle}>
@@ -87,6 +99,8 @@ export default class LoginForm extends Component {
 
 const styles = {
     errorMessageStyle: {
+        position: 'relative',
+        bottom: 10,
         color: 'red',
         alignSelf: 'center'
     }

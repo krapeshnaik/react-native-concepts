@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "install": "react-native run-android",
-    "start": "react-native start --reset-cache",
+    "start": "react-native start --reset-cache --port=8082",
     "android": "npm run install && npm run start",
     "clean": "cd android && ./gradlew clean && cd ..",
     "test": "jest"

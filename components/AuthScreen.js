@@ -3,9 +3,7 @@ import { View, Text } from 'react-native';
 import firebase from 'firebase';
 
 import LoginForm from './LoginForm.js';
-import Button from './Button.js';
-import CardSection from './CardSection.js';
-import Spinner from './Spinner.js';
+import { Button, CardSection, Spinner } from './common';
 
 export default class Auth extends Component {
     constructor(props) {
@@ -42,7 +40,9 @@ export default class Auth extends Component {
             case true:
                 return (
                     <CardSection>
-                        <Button>Log Out</Button>
+                        <Button onPress={() => firebase.auth().signOut()}>
+                            Log Out
+                        </Button>
                     </CardSection>
                 );
 

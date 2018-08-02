@@ -2,11 +2,7 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import firebase from 'firebase';
 
-import Button from './Button.js';
-import Card from './Card.js';
-import CardSection from './CardSection.js';
-import Input from './Input.js';
-import Spinner from './Spinner.js';
+import { Button, Card, CardSection, Input, Spinner } from './common';
 
 export default class LoginForm extends Component {
     constructor(props) {
@@ -78,7 +74,7 @@ export default class LoginForm extends Component {
                     text={this.state.password}
                     onChangeText={password => this.setState({ password })} />
                 </CardSection>
-                
+
                 <Text style={errorMessageStyle}>
                     {this.state.error}
                 </Text>
@@ -99,8 +95,8 @@ export default class LoginForm extends Component {
 
 const styles = {
     errorMessageStyle: {
-        position: 'relative',
-        bottom: 10,
+        // position: 'absolute',
+        bottom: 0,
         color: 'red',
         alignSelf: 'center'
     }

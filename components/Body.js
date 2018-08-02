@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-export default Body = props => {
+export default Body = () => {
     return (
         <View style={styles.bodyContainer}>
             {

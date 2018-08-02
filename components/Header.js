@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { NavigationActions } from 'react-navigation';
 
-import Button from './Button.js';
+import { Button } from './common';
 
 export default class Header extends Component {
     constructor(props) {

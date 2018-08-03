@@ -6,12 +6,14 @@ import { createStackNavigator } from 'react-navigation';
 
 import App from './App';
 import AuthScreen from './components/AuthScreen.js';
+import ReduxScreen from './components/ReduxScreen.js';
 
 const RootStack = createStackNavigator({
     Home: App,
-    Auth: AuthScreen
+    Auth: AuthScreen,
+    Redux: ReduxScreen
 }, {
-    initialRouteName: 'Home',
+    initialRouteName: 'Redux',
 });
 
 AppRegistry.registerComponent(appName, () => RootStack);

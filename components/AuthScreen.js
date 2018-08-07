@@ -1,11 +1,30 @@
 import React, { Component } from 'react';
-import { View, Text } from 'react-native';
+import { View } from 'react-native';
 import firebase from 'firebase';
+import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import LoginForm from './LoginForm.js';
-import { Button, CardSection, Spinner } from './common';
+import Button from './common/Button.js';
+import CardSection from './common/CardSection.js';
+import Spinner from './common/Spinner.js';
 
 export default class Auth extends Component {
+    static navigationOptions = {
+        title: 'Login',
+        headerStyle: {
+            backgroundColor: '#795548',
+        },
+        headerTintColor: '#fff',
+        headerTitleStyle: {
+            fontWeight: 'bold',
+            textAlign: 'center',
+            marginLeft: 60
+        },
+        tabBarIcon: () => {
+            return <Ionicons name="ios-list" size={25} color="#ccc" />
+        }
+    }
+
     constructor(props) {
         super(props);
         this.state = {
@@ -47,7 +66,7 @@ export default class Auth extends Component {
                 );
 
             case false:
-                return <LoginForm />;
+                return <LoginForm />
 
             default:
                 return (

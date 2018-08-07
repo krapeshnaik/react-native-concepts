@@ -2,7 +2,11 @@ import React, { Component } from 'react';
 import { Text } from 'react-native';
 import firebase from 'firebase';
 
-import { Button, Card, CardSection, Input, Spinner } from './common';
+import Input from './common/Input.js';
+import Button from './common/Button.js';
+import Card from './common/Card.js';
+import CardSection from './common/CardSection.js';
+import Spinner from './common/Spinner.js';
 
 export default class LoginForm extends Component {
     constructor(props) {

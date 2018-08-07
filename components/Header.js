@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
-import { Button } from './common';
+import Button from './common/Button.js';
 
 export default class Header extends Component {
     constructor(props) {

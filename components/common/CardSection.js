@@ -1,9 +1,9 @@
 import React from 'react';
 import { View } from 'react-native';
 
-const CardSection = props => (
+export default CardSection = ({ children }) => (
     <View style={styles.container}>
-        { props.children }
+        { children }
     </View>
 );
 
@@ -18,5 +18,3 @@ const styles = {
         justifyContent: 'flex-start'
     }
 };
-
-export default { CardSection };

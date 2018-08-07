@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, ActivityIndicator } from 'react-native';
 
-const Spinner = ({ size }) => {
+export default Spinner = ({ size }) => {
     return (
         <View style={styles.spinnerStyle}>
             <ActivityIndicator size={size || 'large'} />
@@ -16,5 +16,3 @@ const styles = {
         alignItems: 'center'
     }
 };
-
-export default { Spinner };

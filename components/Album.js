@@ -1,7 +1,9 @@
 import React from 'react';
 import { Text, View, Image, Linking } from 'react-native';
 
-import { Button, Card, CardSection } from './common';
+import Button from './common/Button.js';
+import Card from './common/Card.js';
+import CardSection from './common/CardSection.js';
 
 export default Album = ({ album }) => {
     const { title, artist, thumbnail_image, image, url } = album,

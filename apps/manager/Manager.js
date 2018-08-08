@@ -15,7 +15,7 @@ export default class Manager extends Component {
             databaseURL: 'https://redu-bff6c.firebaseio.com',
             projectId: 'redu-bff6c',
             storageBucket: 'redu-bff6c.appspot.com',
-            messagingSenderId: '947722311008'   
+            messagingSenderId: '947722311008'
         });
     }
 

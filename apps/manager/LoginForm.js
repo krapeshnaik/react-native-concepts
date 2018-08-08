@@ -6,7 +6,19 @@ import CardSection from '../../components/common/CardSection.js';
 import Input from '../../components/common/Input.js';
 
 export default class LoginForm extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            email: '',
+            password: '',
+            error: '',
+            loading: false
+        };
+    }
+
     render() {
+        const { errorMessageStyle } = styles;
+
         return (
             <Card>
                 <CardSection>
@@ -43,3 +55,10 @@ export default class LoginForm extends Component {
         );
     }
 }
+
+const styles = {
+    errorMessageStyle: {
+        color: 'red',
+        textAlign: 'center'
+    }
+};

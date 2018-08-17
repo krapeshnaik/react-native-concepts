@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text } from 'react-native';
 
-import { emailChanged } from './actions';
+import { emailChanged, passwordChanged, loginUser } from './actions';
 import Card from '../../components/common/Card.js';
 import CardSection from '../../components/common/CardSection.js';
 import Input from '../../components/common/Input.js';
@@ -10,24 +10,27 @@ import Input from '../../components/common/Input.js';
 class LoginForm extends Component {
     constructor(props) {
         super(props);
+
         this.state = {
-            password: '',
             error: '',
             loading: false
         };
     }
 
     render() {
-        const { errorMessageStyle } = styles;
-        console.log(this.props)
+        const { errorMessageStyle } = styles,
+            { user, email, emailChanged, password, passwordChanged } = this.props;
+
+        console.log(user);
+
         return (
             <Card>
                 <CardSection>
                     <Input
                         label="Email"
                         placeholder="username@gmail.com"
-                        value={this.props.email}
-                        onChangeText={email => this.props.emailChanged(email)} />
+                        value={email}
+                        onChangeText={email => emailChanged(email)} />
                 </CardSection>
 
                 <CardSection>
@@ -35,8 +38,8 @@ class LoginForm extends Component {
                         label="Password"
                         placeholder="********"
                         secureTextEntry={true}
-                        text={this.state.password}
-                        onChangeText={password => this.setState({ password })} />
+                        text={password}
+                        onChangeText={password => passwordChanged(password)} />
                 </CardSection>
 
                 <Text style={errorMessageStyle}>
@@ -47,7 +50,7 @@ class LoginForm extends Component {
                     {
                         this.state.loading ?
                             <Spinner /> :
-                            <Button onPress={this.onButtonPress}>
+                            <Button onPress={() => loginUser(email, password)}>
                                 Log In
                         </Button>
                     }
@@ -65,10 +68,9 @@ const styles = {
 };
 
 const mapStateToProps = state => {
-    console.log(state);
     return {
-        email: state.auth
+        ...state.auth
     };
 };
 
-export default connect(mapStateToProps, { emailChanged })(LoginForm);
+export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 
 import { emailChanged, passwordChanged, loginUser } from './actions';
 import Card from '../../components/common/Card.js';
@@ -18,10 +18,18 @@ class LoginForm extends Component {
     }
 
     render() {
-        const { errorMessageStyle } = styles,
-            { user, email, emailChanged, password, passwordChanged } = this.props;
-
-        console.log(user);
+        const {
+            errorMessageStyle,
+            buttonContainerStyle
+        } = styles;
+        const {
+            user,
+            email,
+            emailChanged,
+            password,
+            passwordChanged,
+            loginUser
+        } = this.props;
 
         return (
             <Card>
@@ -50,9 +58,15 @@ class LoginForm extends Component {
                     {
                         this.state.loading ?
                             <Spinner /> :
-                            <Button onPress={() => loginUser(email, password)}>
-                                Log In
-                        </Button>
+                            <View style={buttonContainerStyle}>
+                                <Button onPress={() => loginUser(email, password)}>
+                                    Log In
+                                </Button>
+
+                                <Button onPress={() => signupUser(email, password)}>
+                                    Sign Up
+                                </Button>
+                            </View>
                     }
                 </CardSection>
             </Card>
@@ -61,6 +75,10 @@ class LoginForm extends Component {
 }
 
 const styles = {
+    buttonContainerStyle: {
+        flex: 1,
+        flexDirection: 'row'
+    },
     errorMessageStyle: {
         color: 'red',
         textAlign: 'center'
@@ -73,4 +91,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged })(LoginForm);
+export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);

@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Text, View } from 'react-native';
 
-import { emailChanged, passwordChanged, loginUser } from './actions';
+import * as actions from './actions';
 import Card from '../../components/common/Card.js';
 import CardSection from '../../components/common/CardSection.js';
 import Input from '../../components/common/Input.js';
@@ -10,11 +10,6 @@ import Input from '../../components/common/Input.js';
 class LoginForm extends Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            error: '',
-            loading: false
-        };
     }
 
     render() {
@@ -23,7 +18,8 @@ class LoginForm extends Component {
             buttonContainerStyle
         } = styles;
         const {
-            user,
+            error,
+            loading,
             email,
             emailChanged,
             password,
@@ -50,13 +46,15 @@ class LoginForm extends Component {
                         onChangeText={password => passwordChanged(password)} />
                 </CardSection>
 
-                <Text style={errorMessageStyle}>
-                    {this.state.error}
-                </Text>
+                {
+                    error ?
+                        <Text style={errorMessageStyle}>{error.message}</Text> :
+                        null
+                }
 
                 <CardSection>
                     {
-                        this.state.loading ?
+                        loading ?
                             <Spinner /> :
                             <View style={buttonContainerStyle}>
                                 <Button onPress={() => loginUser(email, password)}>
@@ -91,4 +89,4 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps, { emailChanged, passwordChanged, loginUser })(LoginForm);
+export default connect(mapStateToProps, actions)(LoginForm);

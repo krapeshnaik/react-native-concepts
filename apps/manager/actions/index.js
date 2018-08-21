@@ -15,8 +15,11 @@ export const passwordChanged = pwd => {
 };
 
 export const loginUser = (email, password) => {
-    console.log('Logging in', email, password);
     return dispatch => {
+        dispatch({
+            type: 'SHOW_LOADER'
+        });
+        
         firebase
             .auth()
             .signInWithEmailAndPassword(email, password)
@@ -24,9 +27,14 @@ export const loginUser = (email, password) => {
                 console.log(user)
                 dispatch({
                     type: 'LOGIN_USER_SUCCESS',
-                    payload: user
+                    user
                 });
             })
-            .catch(error => console.log(error));
+            .catch(error => {
+                dispatch({
+                    type: 'LOGIN_USER_FAIL',
+                    error
+                });
+            });
     };
 };

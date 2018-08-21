@@ -1,5 +1,9 @@
 // Default initial state
-const INITIAL_STATE = { email: '', password: '' };
+const INITIAL_STATE = {
+    email: '',
+    password: '',
+    loading: false
+};
 
 export default (state = INITIAL_STATE, action) => {
     switch (action.type) {
@@ -15,10 +19,30 @@ export default (state = INITIAL_STATE, action) => {
                 password: action.payload
             };
 
+        case 'SHOW_LOADER':
+            return {
+                ...state,
+                loading: true
+            };
+
+        case 'HIDE_LOADER':
+            return {
+                ...state,
+                loading: false
+            };
+
         case 'LOGIN_USER_SUCCESS':
             return {
                 ...state,
-                user: action.payload
+                loading: false,
+                user: action.user
+            };
+
+        case 'LOGIN_USER_FAIL':
+            return {
+                ...state,
+                loading: false,
+                error: action.error
             };
 
         default:
